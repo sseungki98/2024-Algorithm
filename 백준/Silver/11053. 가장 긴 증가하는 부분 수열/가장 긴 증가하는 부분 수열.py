@@ -1,9 +1,17 @@
+from bisect import bisect_left
 N = int(input())
 target = list(map(int, input().split()))
-dp = [1 for _ in range(N)]
-for i in range(N):
-    for j in range(i):
-        if target[i] > target[j]:
-            dp[i] = max(dp[i], dp[j] + 1)
+dp = 1
+value = [target[0]]
 
-print(max(dp))
+for i in range(1, N):
+    if target[i] > value[-1]:
+        value.append(target[i])
+        dp += 1
+    else:
+        idx = bisect_left(value, target[i])
+        value[idx] = target[i]
+
+print(dp)
+
+
