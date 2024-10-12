@@ -1,15 +1,19 @@
-A, B = map(str, input().split(' '))
+L, R = map(int, input().split())
 
-ret = 0
+L_size = len(str(L))
+R_size = len(str(R))
 
-if len(A) != len(B):
+if L_size != R_size:
     print(0)
-
-else: 
-    for i in range(len(A)):
-        if A[i] == B[i]:
-            if A[i] == '8':
-                ret += 1
+else:
+    count = 0
+    L_str = str(L)
+    R_str = str(R)
+    for i in range(L_size):
+        if L_str[i] == R_str[i]:
+            if L_str[i] == '8':
+                count += 1
         else:
             break
-    print(ret)
+
+    print(count)
